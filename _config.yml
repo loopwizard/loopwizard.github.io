@@ -67,7 +67,7 @@ ga_domain: huangxuan.me
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "在路上 自由呼吸"
+sidebar-about-description: "在路上 自由呼吸 仰望星空"
 sidebar-avatar: /img/lxk.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
