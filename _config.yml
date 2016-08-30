@@ -1,10 +1,10 @@
 # Site settings
-title: Loopwizard Blog
+title: Loopwizard Life
 SEOTitle: 李晓恺的胡言乱语 | Loopwizard Life
 header-img: img/home-bg.jpg
 email: breezecoder@gmail.com
 description: "关于前端与设计、黑客与画家 | 黄玄，Web & Mobile Lover，Front-End Engineer，UX Designer | 这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界。"
-keyword: "李晓恺, loopwizard, @loopwizard, 李晓恺的博客, Loopwizard Blog, 博客, 互联网, 大数据, 分布式, 后端, 金融, 经济, 生活, 感悟, 成长, 随笔, 个人网站"
+keyword: "李晓恺, loopwizard, @loopwizard, Blog, 互联网, 大数据, 分布式, 后端, 金融, 经济, 生活, 感悟, 成长, 随笔, 个人网站"
 url: "http://loopwizard.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
