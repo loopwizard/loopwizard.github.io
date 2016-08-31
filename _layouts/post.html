@@ -61,10 +61,15 @@ layout: default
                 {{ content }}
 
                 <hr>
+
+                <div style = "float:right; padding: 2px; border: 1px;">
+                    <wb:share-button appkey="716375354" addition="simple" type="button"></wb:share-button>
+                </div>
                
                 {% if site.duoshuo_share && site.duoshuo_username %}
                 <!-- 多说 Share start -->
                 </style>
+
                 <div class="ds-share"
                      style="text-align: right"
                      data-thread-key="{{page.id}}"
