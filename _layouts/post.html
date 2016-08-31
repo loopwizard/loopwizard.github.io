@@ -53,8 +53,13 @@ layout: default
         <div class="row">
 
     <!-- Post Container -->
-            <div class="post-container">
-                {{ content }}
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				{{ content }}
+
                 <hr>
 
                 {% if site.duoshuo_share && site.duoshuo_username %}
@@ -234,7 +239,7 @@ layout: default
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
         anchors.options = {
           visible: 'always',
           placement: 'right',
