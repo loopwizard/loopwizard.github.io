@@ -56,9 +56,11 @@ layout: default
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
-                post-content">
+                post-container">
 
-				{{ content }}
+                <div class="post-content">
+                    {{ content }}
+                </div>
 
                 <hr>
 
@@ -239,7 +241,7 @@ layout: default
 </script>
 <!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
 <script>
-    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
         anchors.options = {
           visible: 'always',
           placement: 'right',
