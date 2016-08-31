@@ -7,7 +7,6 @@ layout: default
 <!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
-<html xmlns:wb="http://open.weibo.com/wb">
 <style type="text/css">
     header.intro-header{
         position: relative;
@@ -61,29 +60,10 @@ layout: default
                 {{ content }}
 
                 <hr>
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_evernotecn" data-cmd="evernotecn" title="分享到印象笔记"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a><a href="#" class="bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a></div>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["tsina","weixin","evernotecn","youdao","fbook","linkedin","copy"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","evernotecn","youdao","fbook","linkedin","copy"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 
-                <div style = "float:right; padding: 2px; border: 1px;">
-                    <wb:share-button appkey="716375354" addition="simple" type="button"></wb:share-button>
-                </div>
-               
-                {% if site.duoshuo_share && site.duoshuo_username %}
-                <!-- 多说 Share start -->
-                </style>
 
-                <div class="ds-share"
-                     style="text-align: right"
-                     data-thread-key="{{page.id}}"
-                     data-title="{{page.title}}"
-                     data-url="{{site.url}}{{site.baseurl}}{{page.url}}"
-                     data-images="{{ site.url }}{{site.baseurl}}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}"
-                     data-content="{{ content | strip_html | truncate:80 }} | {{ site.SEOTitle }} " >
-                     <div class="ds-share-inline">
-                         <wb:share-button appkey="716375354" addition="simple" type="button"></wb:share-button>
-                     </div>
-                     <hr>
-                </div>
-                <!-- 多说 Share end-->
-                {% endif %}
                 <hr>
 
                 <ul class="pager">

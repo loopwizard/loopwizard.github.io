@@ -5,7 +5,7 @@ header-img: img/main.jpg
 email: breezecoder@gmail.com
 description: "李晓恺的记忆碎片"
 keyword: "李晓恺, loopwizard, @loopwizard, Blog, 互联网, 大数据, 分布式, 后端, 金融, 经济, 生活, 感悟, 成长, 随笔, 个人网站"
-url: "http://loopwizard.github.io/"              # your host, for absolute URL
+url: "https://loopwizard.github.io/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
