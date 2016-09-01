@@ -9,17 +9,22 @@ description: "Knowledge Life Travel"
         <h2 class="post-title">
             {{ post.title }}
         </h2>
+        <div class="post-content-preview">
+            发表于 {{ post.date | date: "%Y-%m-%d" }}
+        </div>
+
         {% if post.subtitle %}
         <h3 class="post-subtitle">
             {{ post.subtitle }}
         </h3>
         {% endif %}
+
         <div class="post-content-preview">
-            {{ post.content | strip_html | truncate:200 }}
+            {{ post.content | markdownify | strip_html | truncate:220 }}
         </div>
     </a>
-    <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+
+    <p>
     </p>
 </div>
 <hr>

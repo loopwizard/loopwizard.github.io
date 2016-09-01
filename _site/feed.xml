@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Memento</title>
+    <description>李晓恺的记忆碎片</description>
+    <link>https://loopwizard.github.io//</link>
+    <atom:link href="https://loopwizard.github.io//feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 01 Sep 2016 15:14:22 +0800</pubDate>
+    <lastBuildDate>Thu, 01 Sep 2016 15:14:22 +0800</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>测试文章</title>
+        <description>&lt;h1 id=&quot;hive-&quot;&gt;Hive 外部分区表使用示例&lt;/h1&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;0、原始数据准备&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;hdfs@kmr-107f1670-gn-f575298f-master-1-001 ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hdfs dfs -lsr /user/hive/loop_test
+lsr: DEPRECATED: Please use &lt;span class=&quot;s1&quot;&gt;'ls -R'&lt;/span&gt; instead.
+drwxr-xr-x   - hdfs hdfs  0  2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160808
+-rw-r--r--   3 hdfs hdfs  45 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160808/loop.txt
+drwxr-xr-x   - hdfs hdfs  0 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809
+-rw-r--r--   3 hdfs hdfs  45 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809/loop.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;hdfs@kmr-107f1670-gn-f575298f-master-1-001 ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hdfs dfs -cat /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809/loop.txt
+432423,hook
+432432,jim
+222222,tom
+654343,nom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;1、创建外部分区表&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE DATABASE IF NOT EXISTS loop;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE EXTERNAL TABLE IF NOT EXISTS loop.loop_table&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;id STRING,
+                                                    name STRING&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                                                    PARTITIONED BY &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;dt STRING&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                                                    ROW FORMAT DELIMITED FIELDS TERMINATED BY &lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;
+                                                    STORED AS TEXTFILE
+                                                    LOCATION &lt;span class=&quot;s1&quot;&gt;'/user/hive/loop_test'&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;2、挂载分区数据&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ALTER TABLE loop.loop_table ADD PARTITION &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160808'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ALTER TABLE loop.loop_table ADD PARTITION &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160809'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;3、查询分区数据&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; FROM loop.loop_table where &lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160808'&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Fri, 15 Apr 2016 00:00:00 +0800</pubDate>
+        <link>https://loopwizard.github.io//2016/04/15/os-metro/</link>
+        <guid isPermaLink="true">https://loopwizard.github.io//2016/04/15/os-metro/</guid>
+        
+        <category>Bigdata</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>测试文章</title>
+        <description>&lt;h1 id=&quot;hive-&quot;&gt;Hive 外部分区表使用示例&lt;/h1&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;0、原始数据准备&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;hdfs@kmr-107f1670-gn-f575298f-master-1-001 ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hdfs dfs -lsr /user/hive/loop_test
+lsr: DEPRECATED: Please use &lt;span class=&quot;s1&quot;&gt;'ls -R'&lt;/span&gt; instead.
+drwxr-xr-x   - hdfs hdfs  0  2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160808
+-rw-r--r--   3 hdfs hdfs  45 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160808/loop.txt
+drwxr-xr-x   - hdfs hdfs  0 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809
+-rw-r--r--   3 hdfs hdfs  45 2016-08-23 14:16 /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809/loop.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;hdfs@kmr-107f1670-gn-f575298f-master-1-001 ~]&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;hdfs dfs -cat /user/hive/loop_test/dt&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;20160809/loop.txt
+432423,hook
+432432,jim
+222222,tom
+654343,nom
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;1、创建外部分区表&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE DATABASE IF NOT EXISTS loop;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CREATE EXTERNAL TABLE IF NOT EXISTS loop.loop_table&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;id STRING,
+                                                    name STRING&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                                                    PARTITIONED BY &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;dt STRING&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                                                    ROW FORMAT DELIMITED FIELDS TERMINATED BY &lt;span class=&quot;s1&quot;&gt;','&lt;/span&gt;
+                                                    STORED AS TEXTFILE
+                                                    LOCATION &lt;span class=&quot;s1&quot;&gt;'/user/hive/loop_test'&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;2、挂载分区数据&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ALTER TABLE loop.loop_table ADD PARTITION &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160808'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ALTER TABLE loop.loop_table ADD PARTITION &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160809'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;3、查询分区数据&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SELECT &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; FROM loop.loop_table where &lt;span class=&quot;nv&quot;&gt;dt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'20160808'&lt;/span&gt;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 14 Apr 2016 00:00:00 +0800</pubDate>
+        <link>https://loopwizard.github.io//2016/04/14/os-metro/</link>
+        <guid isPermaLink="true">https://loopwizard.github.io//2016/04/14/os-metro/</guid>
+        
+        <category>Bigdata</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

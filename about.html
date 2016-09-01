@@ -6,21 +6,52 @@ header-img: "img/about.jpg"
 ---
 
 <div class="zh post-container">
-
+    <div>
+        <h2>文章地图</h2>
+        <div>
+            <h5>大数据主题</h5>
+            <blockquote><p>大数据相关</p></blockquote>
+            <ul>
+                <li><a href="http://huangxuan.me/2016/06/05/pwa-in-my-pov/">Progressive Web App 之我见 · 2016</a></li>
+                <li><a href="http://huangxuan.me/2015/12/28/css-sucks-2015/">CSS Still Sucks 2015 · 2015</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h2>关于我</h2>
+        <div>
+            <h5>李晓恺(loopwizard)，88年出厂，已婚未育</h5>
+            <h5>帝都码农，12年毕业，百度基础架构部折腾了3年分布式存储，现混迹在金山云大数据</h5>
+            <h5>热衷于世界的变化趋势，喜欢有趣的人和事</h5>
+            <h5>去发现未曾看过的世界，去践行未曾走过的道路</h5>
+            <h5>
+                👉 
+                {% if site.weibo_username %}
+                <a target="_blank" href="http://weibo.com/{{ site.weibo_username }}">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+                {% endif %}，可以联系到我！
+            </h5>
+        </div>
+    </div>
 </div>
 
 {% if site.duoshuo_username %}
 <!-- 多说评论框 start -->
 <div class="comment">
     <div class="ds-thread"
-    {% if site.duoshuo_username == "huxblog" %}
-        data-thread-id="1187623191091085319"
-    {% else %}
-        data-thread-key="{{site.duoshuo_username}}/about"
-    {% endif %}
+         {% if site.duoshuo_username == "huxblog" %}
+         data-thread-id="1187623191091085319"
+         {% else %}
+         data-thread-key="{{site.duoshuo_username}}/about"
+         {% endif %}
 
-    data-title="{{page.title}}"
-    data-url="{{site.url}}/about/"></div>
+         data-title="{{page.title}}"
+         data-url="{{site.url}}/about/"></div>
 </div>
 <!-- 多说评论框 end -->
 
@@ -31,14 +62,14 @@ header-img: "img/about.jpg"
 
     // duoshuo comment query.
     var duoshuoQuery = {short_name: _user };
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
 </script>
 <!-- 多说公共JS代码 end -->
 {% endif %}
@@ -69,86 +100,4 @@ header-img: "img/about.jpg"
 <!-- disqus 公共JS代码 end -->
 {% endif %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <ul class="list-inline text-center">
-                {% if site.RSS %}
-                <li>
-                    <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-                {% if site.twitter_username %}
-                <li>
-                    <a href="https://twitter.com/{{ site.twitter_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-
-                <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-                {% if site.zhihu_username %}
-                <li>
-                    <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-                {% if site.weibo_username %}
-                <li>
-                    <a target="_blank" href="https://weibo.com/{{ site.weibo_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-
-
-                {% if site.facebook_username %}
-                <li>
-                    <a target="_blank" href="https://www.facebook.com/{{ site.facebook_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-                {% if site.github_username %}
-                <li>
-                    <a target="_blank" href="https://github.com/{{ site.github_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-                {% if site.linkedin_username %}
-                <li>
-                    <a target="_blank" href="https://www.linkedin.com/in/{{ site.linkedin_username }}">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</div>
 
