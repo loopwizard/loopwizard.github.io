@@ -34,7 +34,17 @@ header-img: "img/about.jpg"
                         <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
                     </span>
                 </a>
+                {% endif %}或者
+                👉 
+                {% if site.zhihu_username %}
+                    <a target="_blank" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                        </span>
+                    </a>
                 {% endif %}，可以联系到我！
+
             </h5>
         </div>
     </div>
