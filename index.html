@@ -6,12 +6,10 @@ description: "Knowledge Life Travel"
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">
+
         <h2 class="post-title">
             {{ post.title }}
         </h2>
-        <div class="post-content-preview">
-            发表于 {{ post.date | date: "%Y-%m-%d" }}
-        </div>
 
         {% if post.subtitle %}
         <h3 class="post-subtitle">
@@ -22,10 +20,32 @@ description: "Knowledge Life Travel"
         <div class="post-content-preview">
             {{ post.content | markdownify | strip_html | truncate:220 }}
         </div>
-    </a>
+        <div class="tags">
+            {% for tag in post.tags %}
+            <span style="font-style:normal;display: inline-block;
+            border: 1px solid rgba(87, 81, 81, 0.8);
+            border-radius: 999em;
+            padding: 0 10px;
+            color: #878181;
+            line-height: 24px;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 0 1px;
+            margin-bottom: 6px;">{{ tag }}</span>
+            {% endfor %}
+            <span style="font-style:normal;display: inline-block;
+            border: 1px solid rgba(87, 81, 81, 0.8);
+            border-radius: 999em;
+            padding: 0 10px;
+            color: #878181;
+            line-height: 24px;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 0 1px;
+            margin-bottom: 6px;">发表于 {{ post.date | date: "%Y-%m-%d" }}</span>
+        </div>
 
-    <p>
-    </p>
+    </a>
 </div>
 <hr>
 {% endfor %}
