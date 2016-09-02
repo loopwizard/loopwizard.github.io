@@ -1,6 +1,6 @@
 ---
 layout: page
-description: "Essense Methodology Practice"
+description: "Essence Methodology Practice"
 ---
 
 {% for post in paginator.posts %}
@@ -33,6 +33,17 @@ description: "Essense Methodology Practice"
             margin: 0 1px;
             margin-bottom: 6px;">{{ tag }}</span>
             {% endfor %}
+            <span style="font-style:normal;display: inline-block;
+            border: 1px solid rgba(87, 81, 81, 0.8);
+            border-radius: 999em;
+            padding: 0 10px;
+            color: #878181;
+            line-height: 24px;
+            font-size: 12px;
+            text-decoration: none;
+            margin: 0 1px;
+            margin-bottom: 6px;">{{ post.loop-tag }}</span>
+
             <span style="font-style:normal;display: inline-block;
             border: 1px solid rgba(87, 81, 81, 0.8);
             border-radius: 999em;
